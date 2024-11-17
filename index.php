@@ -44,8 +44,10 @@
       <div class="dropdown">
         <button class="dropbtn">Entidades Referentes</button>
         <div class="dropdown-content">
-          <a href="gestionar_entidades.php">Gestión de entidades referentes</a>
-          <a href="lista_entidades_referentes.php">Lista de entidades referentes</a>
+          <a href="gestionar_entidades.php">Gestión de entidades</a>
+          <a href="lista_entidades_referentes.php">Lista de entidades</a>
+          <a href="gestionar_entidades.php">Gestión de referentes</a>
+          <a href="lista_entidades_referentes.php">Lista de referentes</a>
         </div>
       </div>
 

@@ -46,12 +46,9 @@
                 <button class="dropbtn">Servicio de Empleo</button>
                 <div class="dropdown-content">
                     <a href="gestion_servicio_empleo.php">Gestión de Servicios</a>
-                    <a href="lista_servicio_empleo.php">Lista de Servicios</a>
+                    <a href="lista de servicios de Empleo.php">Lista de Servicios</a>
                 </div>
             </div>
-            <a href="/logout.php" class="logout-btn">
-                <img src="/img/cerrar-sesion.png" alt="Cerrar sesión">
-            </a>
         </div>
         
         <div class="content_alumnos">

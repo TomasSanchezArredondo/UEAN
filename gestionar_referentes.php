@@ -28,12 +28,13 @@
                     <a href="lista_convenios.php">lista convenios</a>
                 </div>
             </div>
-            < class="dropdown">
-                <button class="dropbtn">alumnos graduados</button>
-                <div class="dropdown-content">
-                    <a href="gestionar_graduados.php">agregar graduado</a>
-                    <a href="lista_graduados.php">Lista graduados</a>
-                </div>
+            <div class="dropdown">
+        <button class="dropbtn">alumnos graduados</button>
+        <div class="dropdown-content">
+          <a href="gestionar_graduados.php">agregar graduado</a>
+          <a href="lista_graduados.php">Lista graduados</a>
+        </div>
+      </div>
         
         <div class="dropdown">
             <button class="dropbtn">entidades referentes</button>
