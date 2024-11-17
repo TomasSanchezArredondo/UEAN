@@ -28,7 +28,6 @@
                     <a href="lista_convenios.php">lista convenios</a>
                 </div>
             </div>
-            < class="dropdown">
                 <button class="dropbtn">alumnos graduados</button>
                 <div class="dropdown-content">
                     <a href="gestionar_graduados.php">agregar graduado</a>
