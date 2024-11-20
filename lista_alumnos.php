@@ -19,7 +19,7 @@
       <div class="dropdown">
         <button class="dropbtn">alumnos</button>
         <div class="dropdown-content">
-          <a href="gestionar_alunos.php">agregar alumno</a>
+          <a href="gestionar_alumnos.php">agregar alumno</a>
           <a href="lista_alumnos.php">Lista Alumnos</a>
         </div>
       </div>
@@ -66,19 +66,7 @@
         </thead>
         <tbody>
           <?php
-          // Configuración de conexión a la base de datos
-          $servername = "localhost";
-          $username = "root"; // Usuario predeterminado en XAMPP
-          $password = ""; // Deja en blanco si no tienes contraseña
-          $dbname = "uean"; // Nombre de la base de datos importada
-
-          // Crear conexión
-          $conn = new mysqli($servername, $username, $password, $dbname);
-
-          // Verificar la conexión
-          if ($conn->connect_error) {
-            die("Conexión fallida: " . $conn->connect_error);
-          }
+          include "./conexion.php";
 
           // Consulta para obtener los datos de los alumnos
           $sql = "SELECT nombre, apellido, dni FROM alumnos";

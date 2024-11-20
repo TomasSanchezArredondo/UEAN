@@ -17,7 +17,7 @@
           <div class="dropdown">
             <button class="dropbtn">alumnos</button>
             <div class="dropdown-content">
-              <a href="gestionar_alunos.php">agregar alumno</a>
+              <a href="gestionar_alumnos.php">agregar alumno</a>
               <a href="lista_alumnos.php">Lista Alumnos</a>
             </div>
           </div>
