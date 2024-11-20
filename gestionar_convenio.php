@@ -1,10 +1,10 @@
 <?php
-// Incluir la conexión a la base de datos
-include 'conexion.php';
+include 'conexion.php'; // Incluye la conexión a la base de datos
 
-// Obtener las entidades disponibles
-$query = $pdo->query("SELECT id, nombre FROM entidad");
-$entidades = $query->fetchAll(PDO::FETCH_ASSOC);
+// Obtener las entidades para mostrarlas en el formulario
+$query = "SELECT id, nombre FROM entidad";
+$result = $conn->query($query);
+$entidades = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -12,158 +12,112 @@ $entidades = $query->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Convenios</title>
-    <!-- Bootstrap CSS -->
+    <title>Gestionar Convenio</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 <body>
+
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Formulario de Convenios</h1>
-        <div class="card shadow-sm">
-            <div class="card-body">
-                <form id="mainForm" method="POST" action="procesar_convenio.php" enctype="multipart/form-data">
-                    <!-- Selección del tipo de convenio -->
-                    <div class="mb-3">
-                        <label for="tipoConvenio" class="form-label">Selecciona el tipo de convenio</label>
-                        <select class="form-select" id="tipoConvenio" name="tipoConvenio" required>
-                            <option value="" selected disabled>Selecciona una opción</option>
-                            <option value="pasantia">Convenio Pasantía-Beneficio</option>
-                            <option value="otros">Otros Convenios</option>
-                        </select>
-                    </div>
-
-                    <!-- Selección de la entidad -->
-                    <div class="mb-3">
-                        <label for="idEntidad" class="form-label">Selecciona la entidad</label>
-                        <select class="form-select" id="idEntidad" name="id_entidad" required>
-                            <option value="" selected disabled>Selecciona una entidad</option>
-                            <?php foreach ($entidades as $entidad): ?>
-                                <option value="<?= $entidad['id'] ?>"><?= htmlspecialchars($entidad['nombre']) ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-
-                    <!-- Formulario para Pasantía-Beneficio -->
-                    <div id="formPasantia" class="d-none">
-                        <h5 class="mb-3">Formulario de Pasantía-Beneficio</h5>
-                        <div class="mb-3">
-                            <label for="tipoConvenioPasantia" class="form-label">Tipo de Convenio</label>
-                            <select class="form-select" id="tipoConvenioPasantia" name="tipo_convenio" required>
-                                <option value="" selected disabled>Selecciona una opción</option>
-                                <option value="pasantía">Pasantía</option>
-                                <option value="beneficio">Beneficio</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="observacionesPasantia" class="form-label">Observaciones</label>
-                            <textarea class="form-control" id="observacionesPasantia" name="observaciones"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="convenioFilePasantia" class="form-label">Archivo del Convenio</label>
-                            <input type="file" class="form-control" id="convenioFilePasantia" name="convenio_file" accept=".pdf" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="fechaFirmaPasantia" class="form-label">Fecha de Firma</label>
-                            <input type="date" class="form-control" id="fechaFirmaPasantia" name="fecha_firma_convenio" required>
-                        </div>
-                    </div>
-
-                    <!-- Formulario para Otros Convenios -->
-                    <div id="formOtros" class="d-none">
-                        <h5 class="mb-3">Formulario de Otros Convenios</h5>
-                        <div class="mb-3">
-                            <label for="tipoConvenioOtros" class="form-label">Tipo de Convenio</label>
-                            <select class="form-select" id="tipoConvenioOtros" name="tipo" required>
-                                <option value="" selected disabled>Selecciona una opción</option>
-                                <option value="colaboración academica">Colaboración Académica</option>
-                                <option value="accion comunitaria">Acción Comunitaria</option>
-                                <option value="pre profesional">Pre Profesional</option>
-                                <option value="beneficios para comunidad">Beneficios para Comunidad</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="firmaConvenioOtros" class="form-label">¿Convenio Firmado?</label>
-                            <select class="form-select" id="firmaConvenioOtros" name="firma_convenio" required>
-                                <option value="" selected disabled>Selecciona una opción</option>
-                                <option value="si">Sí</option>
-                                <option value="no">No</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="adendasCantidadOtros" class="form-label">Número de Adendas</label>
-                            <input type="number" class="form-control" id="adendasCantidadOtros" name="adendas_cantidad" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="observacionesOtros" class="form-label">Observaciones</label>
-                            <textarea class="form-control" id="observacionesOtros" name="observaciones"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="convenioFileOtros" class="form-label">Archivo del Convenio</label>
-                            <input type="file" class="form-control" id="convenioFileOtros" name="convenio_file" accept=".pdf" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="fechaFirmaOtros" class="form-label">Fecha de Firma</label>
-                            <input type="date" class="form-control" id="fechaFirmaOtros" name="fecha_firma_convenio" required>
-                        </div>
-                    </div>
-
-                    <!-- Botón de envío -->
-                    <div class="mt-4">
-                        <button type="submit" class="btn btn-primary w-100">Enviar Convenio</button>
-                    </div>
-                </form>
+        <h2 class="text-center mb-4">Gestionar Convenio</h2>
+        <form action="procesar_convenio.php" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="entidad" class="form-label">Entidad</label>
+                <select id="entidad" name="id_entidad" class="form-select" required>
+                    <option value="">Seleccione una entidad</option>
+                    <?php foreach ($entidades as $entidad): ?>
+                        <option value="<?= $entidad['id'] ?>"><?= $entidad['nombre'] ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
-        </div>
-    </div>
 
-    <script>
-        const tipoConvenio = document.getElementById('tipoConvenio');
-        const formPasantia = document.getElementById('formPasantia');
-        const formOtros = document.getElementById('formOtros');
-        const tipoConvenioPasantia = document.getElementById('tipoConvenioPasantia');
-        const tipoConvenioOtros = document.getElementById('tipoConvenioOtros');
-        const firmaConvenioOtros = document.getElementById('firmaConvenioOtros');
-        const adendasCantidadOtros = document.getElementById('adendasCantidadOtros');
-        const convenioFilePasantia = document.getElementById('convenioFilePasantia');
-        const convenioFileOtros = document.getElementById('convenioFileOtros');
-        const fechaFirmaPasantia = document.getElementById('fechaFirmaPasantia');
-        const fechaFirmaOtros = document.getElementById('fechaFirmaOtros');
+            <div class="mb-3">
+                <label for="tipo_convenio_general" class="form-label">Tipo de Convenio</label>
+                <select id="tipo_convenio_general" name="tipo_convenio_general" class="form-select" required>
+                    <option value="">Seleccione un tipo de convenio</option>
+                    <option value="pasantia-beneficio">Pasantía / Beneficio</option>
+                    <option value="otros">Otros Convenios</option>
+                </select>
+            </div>
 
-        tipoConvenio.addEventListener('change', function () {
-            // Mostrar/ocultar formularios
-            if (this.value === 'pasantia') {
-                formPasantia.classList.remove('d-none');
-                formOtros.classList.add('d-none');
-                
-                // Hacer los campos de pasantía requeridos
-                tipoConvenioPasantia.required = true;
-                convenioFilePasantia.required = true;
-                fechaFirmaPasantia.required = true;
+            <div id="formulario-dinamico"></div>
 
-                // Remover los campos de otros convenios requeridos
-                tipoConvenioOtros.required = false;
-                firmaConvenioOtros.required = false;
-                adendasCantidadOtros.required = false;
-                convenioFileOtros.required = false;
-                fechaFirmaOtros.required = false;
-            } else if (this.value === 'otros') {
-                formOtros.classList.remove('d-none');
-                formPasantia.classList.add('d-none');
+            <button type="submit" class="btn btn-primary mt-3">Guardar Convenio</button>
+        </form>
+ 
 
-                // Hacer los campos de otros convenios requeridos
-                tipoConvenioOtros.required = true;
-                firmaConvenioOtros.required = true;
-                adendasCantidadOtros.required = true;
-                convenioFileOtros.required = true;
-                fechaFirmaOtros.required = true;
+        <div id="formulario-dinamico"></div>
 
-                // Remover los campos de pasantía requeridos
-                tipoConvenioPasantia.required = false;
-                convenioFilePasantia.required = false;
-                fechaFirmaPasantia.required = false;
-            }
-        });
-    </script>
+<script>
+    document.getElementById('tipo_convenio_general').addEventListener('change', function() {
+        const tipoConvenio = this.value;
+        const formularioDinamico = document.getElementById('formulario-dinamico');
+
+        formularioDinamico.innerHTML = ''; // Limpiar el formulario dinámico
+
+        if (tipoConvenio === 'pasantia-beneficio') {
+            formularioDinamico.innerHTML = `
+                <div class="mb-3">
+                    <label for="tipo_convenio" class="form-label">Tipo de Convenio</label>
+                    <select id="tipo_convenio" name="tipo_convenio" class="form-select" required>
+                        <option value="">Seleccione un tipo</option>
+                        <option value="pasantía">Pasantía</option>
+                        <option value="beneficio">Beneficio</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="observaciones" class="form-label">Observaciones</label>
+                    <textarea id="observaciones" name="observaciones" class="form-control"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="convenio_file" class="form-label">Archivo del Convenio</label>
+                    <input type="file" id="convenio_file" name="convenio_file" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="fecha_firma_convenio" class="form-label">Fecha de Firma</label>
+                    <input type="date" id="fecha_firma_convenio" name="fecha_firma_convenio" class="form-control" required>
+                </div>
+            `;
+        } else if (tipoConvenio === 'otros') {
+            formularioDinamico.innerHTML = `
+                <div class="mb-3">
+                    <label for="tipo_convenio" class="form-label">Tipo de Convenio</label>
+                    <select id="tipo_convenio" name="tipo_convenio" class="form-select" required>
+                        <option value="">Seleccione un tipo</option>
+                        <option value="colaboración academica">Colaboración Académica</option>
+                        <option value="accion comunitaria">Acción Comunitaria</option>
+                        <option value="pre profesional">Pre Profesional</option>
+                        <option value="beneficios para comunidad">Beneficios para Comunidad</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="firma_convenio" class="form-label">¿Se firmó el convenio?</label>
+                    <select id="firma_convenio" name="firma_convenio" class="form-select" required>
+                        <option value="">Seleccione una opción</option>
+                        <option value="Sí">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="fecha_firma_convenio" class="form-label">Fecha de Firma</label>
+                    <input type="date" id="fecha_firma_convenio" name="fecha_firma_convenio" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="adendas_cantidad" class="form-label">Cantidad de Adendas</label>
+                    <input type="number" id="adendas_cantidad" name="adendas_cantidad" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="observaciones" class="form-label">Observaciones</label>
+                    <textarea id="observaciones" name="observaciones" class="form-control"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="convenio_file" class="form-label">Archivo del Convenio</label>
+                    <input type="file" id="convenio_file" name="convenio_file" class="form-control" required>
+                </div>
+            `;
+        }
+    });
+</script>
 </body>
 </html>
