@@ -46,7 +46,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="gestionar_alumnos.php">Agregar Alumno</a></li>
-              <li><a class="dropdown-item" href="lista_alumnos.php">Lista de Alumnos</a></li>
+              <li><a class="dropdown-item" href="listar_alumnos.php">Lista de Alumnos</a></li>
             </ul>
           </li>
 

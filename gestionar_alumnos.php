@@ -1,111 +1,77 @@
+<?php
+include './navbar.php';
+?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interfaz de Agregar Alumno</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Estilo para el marcador de posición personalizado en el campo de fecha */
-        .date-container {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-        .date-placeholder {
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-            color: #999;
-        }
-        input[type="date"]:not(:placeholder-shown) + .date-placeholder,
-        input[type="date"]:focus + .date-placeholder {
-            display: none;
-        }
-        input[type="date"] {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-        }
-    </style>
+    <title>Agregar alumno</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <!-- Encabezado -->
-    <div class="header">
-          <a href="index.php">
-            <img src="./img/descarga-Photoroom.png" alt="Logo">
-          </a>
-          <input type="text" placeholder="Buscar...">
-    
-          <div class="dropdown">
-            <button class="dropbtn">alumnos</button>
-            <div class="dropdown-content">
-              <a href="gestionar_alunos.php">agregar alumno</a>
-              <a href="lista_alumnos.php">Lista Alumnos</a>
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">Agregar alumno</h1>
+        <form action="subir_alumnos.php" method="POST" enctype="multipart/form-data">
+            <!-- Nombres -->
+            <div class="mb-3">
+                <label for="nombres" class="form-label">Nombres</label>
+                <input type="text" class="form-control" id="nombres" name="nombres" required>
             </div>
-          </div>
-          <div class="dropdown">
-            <button class="dropbtn">convenios</button>
-            <div class="dropdown-content">
-              <a href="gestionar_convenio.php">gestionar convenio</a>
-              <a href="lista_convenios.php">lista convenios</a>
+            <!-- Apellidos -->
+            <div class="mb-3">
+                <label for="apellidos" class="form-label">Apellidos</label>
+                <input type="text" class="form-control" id="apellidos" name="apellidos" required>
             </div>
-          </div>
-          <div class="dropdown">
-            <button class="dropbtn">alumnos graduados</button>
-            <div class="dropdown-content">
-              <a href="gestionar_graduados.php">agregar graduado</a>
-              <a href="lista_graduados.php">Lista graduados</a>
+            <!-- Pasantía -->
+            <div class="mb-3">
+                <label for="pasantia" class="form-label">Pasantía</label>
+                <select class="form-select" id="pasantia" name="pasantia" required>
+                    <option value="" disabled selected>Seleccionar</option>
+                    <option value="rentada">Rentada</option>
+                    <option value="no rentada">No rentada</option>
+                </select>
             </div>
-          </div>
-    
-    
-    
-          <div class="dropdown">
-            <button class="dropbtn">entidades referentes</button>
-            <div class="dropdown-content">
-              <a href="gestionar_entidades.php">gestion de entidades</a>
-              <a href="lista entidades referentes.php">lista entidades referentes</a>
-              <a href="gestionar_referentes.php">gestion de referentes</a>
-              <a href="lista entidades referentes.php">lista referentes</a>
+            <!-- DNI -->
+            <div class="mb-3">
+                <label for="dni" class="form-label">DNI</label>
+                <input type="number" class="form-control" id="dni" name="dni" required>
             </div>
-          </div>
-          <div class="dropdown">
-            <button class="dropbtn">servicio de empleo</button>
-            <div class="dropdown-content">
-              <a href="gestión de servicios de Empleo.php">gestion de servicios de empleo</a>
-              <a href="lista de servicios de Empleo.php">lista de servicios de empleo</a>
+            <!-- Carrera -->
+            <div class="mb-3">
+                <label for="carrera" class="form-label">Carrera</label>
+                <input type="text" class="form-control" id="carrera" name="carrera" required>
             </div>
-          </div>
-        </div>
-
-        <!-- Contenido principal -->
-        <div class="content_alumnos">
-            <div class="title">AGREGAR ALUMNO</div>
-            <form method="post" action="procesar_alumno.php">
-                <div class="buttons">
-                    <input class="button" type="text" name="nombre" placeholder="NOMBRE" required>
-                    <input class="button" type="text" name="apellido" placeholder="APELLIDO/S" required>
-                    <input class="button" type="text" name="dni" placeholder="DNI" required>
-                    <input class="button" type="text" name="carreras" placeholder="CARRERAS" required>
-
-                    <!-- Campo de fecha con marcador de posición personalizado -->
-                    <div class="date-container">
-                        <input class="button" type="date" name="fecha" required>
-                        <span class="date-placeholder">Ingrese fecha inicio</span>
-                    </div>
-
-                    <input class="button" type="text" name="convenios" placeholder="CONVENIOS">
-                    <input class="button" type="text" name="observaciones" placeholder="OBSERVACIONES">
-                </div>
-                <div class="button-group">
-                    <button class="add-btn" type="submit">Agregar</button>
-                </div>
-            </form>
-        </div>
+            <!-- Fecha de inicio -->
+            <div class="mb-3">
+                <label for="fecha_inicio" class="form-label">Fecha de Inicio</label>
+                <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
+            </div>
+            <!-- Fecha de fin -->
+            <div class="mb-3">
+                <label for="fecha_fin" class="form-label">Fecha de Fin</label>
+                <input type="date" class="form-control" id="fecha_fin" name="fecha_fin">
+            </div>
+            <!-- Observaciones -->
+            <div class="mb-3">
+                <label for="observaciones" class="form-label">Observaciones</label>
+                <textarea class="form-control" id="observaciones" name="observaciones" rows="3"></textarea>
+            </div>
+            <!-- Puesto -->
+            <div class="mb-3">
+                <label for="puesto" class="form-label">Puesto</label>
+                <input type="text" class="form-control" id="puesto" name="puesto">
+            </div>
+            <!-- Archivo de convenio -->
+            <div class="mb-3">
+                <label for="convenio_file" class="form-label">Archivo de Convenio</label>
+                <input type="file" class="form-control" id="convenio_file" name="convenio_file">
+            </div>
+            <!-- Botón de enviar -->
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
