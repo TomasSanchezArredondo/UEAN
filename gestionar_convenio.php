@@ -1,10 +1,12 @@
 <?php
 include 'conexion.php'; // Incluye la conexión a la base de datos
-
+include './navbar.php';
 // Obtener las entidades para mostrarlas en el formulario
 $query = "SELECT id, nombre FROM entidad";
 $result = $conn->query($query);
 $entidades = $result->fetch_all(MYSQLI_ASSOC);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -119,5 +121,6 @@ $entidades = $result->fetch_all(MYSQLI_ASSOC);
         }
     });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0xY0A+YfbiM3Xb1EY4A6LPHiDo3YIQnsjzF8vXT+iPHVuzl9" crossorigin="anonymous"></script>
 </body>
 </html>
