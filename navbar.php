@@ -79,7 +79,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="gestionar_entidades.php">Gestión de Entidades</a></li>
-              <li><a class="dropdown-item" href="lista_entidades_referentes.php">Lista de Entidades</a></li>
+              <li><a class="dropdown-item" href="lista_entidades.php">Lista de Entidades</a></li>
               <li><a class="dropdown-item" href="gestionar_referentes.php">Gestión de Referentes</a></li>
               <li><a class="dropdown-item" href="lista_referentes.php">Lista de Referentes</a></li>
             </ul>
