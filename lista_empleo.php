@@ -24,7 +24,7 @@ $result_empleos = $conn->query($query_empleos);
                 <div class="card h-100">
                     <img src="<?= $empleo['imagen'] ?>" class="card-img-top" alt="Imagen de <?= $empleo['puesto'] ?>" style="height: 200px; object-fit: cover;">
                     <div class="card-body">
-                        <h5 class="card-title"><?= $empleo['puesto'] ?></h5>
+                        <h5 class="card-title"><strong>Puesto: </strong><?= $empleo['puesto'] ?></h5>
                         <p class="card-text"><strong>Área:</strong> <?= $empleo['area'] ?></p>
                         <a href="detalles_empleo.php?id=<?= $empleo['id'] ?>" class="btn btn-primary">Ver detalles</a>
                     </div>

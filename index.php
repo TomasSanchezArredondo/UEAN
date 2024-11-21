@@ -38,7 +38,7 @@ include 'navbar.php';
                 <ul class="list-group">
                     <li class="list-group-item active">Alumnos</li>
                     <li class="list-group-item"><a href="gestionar_alumnos.php" class="text-decoration-none">Gestionar alumno</a></li>
-                    <li class="list-group-item"><a href="lista_alumnos.php" class="text-decoration-none">Lista de alumnos</a></li>
+                    <li class="list-group-item"><a href="listar_alumnos.php" class="text-decoration-none">Lista de alumnos</a></li>
                 </ul>
             </div>
             <div class="col-md-6">
@@ -59,7 +59,7 @@ include 'navbar.php';
                 <ul class="list-group">
                     <li class="list-group-item active">Entidades</li>
                     <li class="list-group-item"><a href="gestionar_entidades.php" class="text-decoration-none">Gestionar entidades</a></li>
-                    <li class="list-group-item"><a href="lista_entidades_referentes.php" class="text-decoration-none">Lista de entidades</a></li>
+                    <li class="list-group-item"><a href="lista_entidades.php" class="text-decoration-none">Lista de entidades</a></li>
                 </ul>
             </div>
             <div class="col-md-6 mt-3">
@@ -72,7 +72,7 @@ include 'navbar.php';
             <div class="col-md-6 mt-3">
                 <ul class="list-group">
                     <li class="list-group-item active">Servicios de Empleo</li>
-                    <li class="list-group-item"><a href="añadir_empleo.php" class="text-decoration-none">Añadir servicios de empleo</a></li>
+                    <li class="list-group-item"><a href="agregar_empleo.php" class="text-decoration-none">Añadir servicios de empleo</a></li>
                     <li class="list-group-item"><a href="lista_empleo.php" class="text-decoration-none">Lista de servicios de empleo</a></li>
                 </ul>
             </div>
