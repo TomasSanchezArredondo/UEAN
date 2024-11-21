@@ -76,8 +76,13 @@ if ($tabla_seleccionada === 'otros') {
                         if (!empty($datos)) {
                             foreach ($datos as $fila) {
                                 echo "<tr>";
-                                foreach ($fila as $valor) {
-                                    echo "<td>" . htmlspecialchars($valor) . "</td>";
+                                foreach ($fila as $columna => $valor) {
+                                    // Si la columna es "convenio_file", generamos un enlace
+                                    if ($columna === 'convenio_file' && !empty($valor)) {
+                                        echo "<td><a href='" . htmlspecialchars($valor) . "' target='_blank'>Ver archivo</a></td>";
+                                    } else {
+                                        echo "<td>" . htmlspecialchars($valor) . "</td>";
+                                    }
                                 }
                                 echo "</tr>";
                             }
