@@ -16,7 +16,18 @@ $carrera_seleccionada = isset($_GET['carrera']) ? $_GET['carrera'] : null;
 // Obtener los alumnos de la carrera seleccionada, excluyendo los graduados
 $alumnos = [];
 if ($carrera_seleccionada) {
-    $alumno_query = "SELECT * FROM alumno WHERE carrera = ? AND es_graduado = 'NO'";
+    $alumno_query = "
+        SELECT 
+            a.*,
+            COALESCE(cp.tipo_convenio, co.tipo_convenio, 'N/A') AS tipo_convenio,
+            COALESCE(e.nombre, 'N/A') AS entidad_convenio
+        FROM alumno a
+        LEFT JOIN convenio_pasantia_beneficio_alumno cpba ON a.id = cpba.id_alumno
+        LEFT JOIN convenios_pasantia_beneficios cp ON cpba.id_convenio_beneficio = cp.id
+        LEFT JOIN convenio_otros_alumno coa ON a.id = coa.id_alumno
+        LEFT JOIN convenio_otros co ON coa.id_convenio_otros = co.id
+        LEFT JOIN entidad e ON e.id = COALESCE(cp.id_entidad, co.id_entidad)
+        WHERE a.carrera = ? AND a.es_graduado = 'NO'";
     $stmt = $conn->prepare($alumno_query);
     $stmt->bind_param("s", $carrera_seleccionada);
     $stmt->execute();
@@ -66,7 +77,9 @@ if ($carrera_seleccionada) {
                             <th>DNI</th>
                             <th>Fecha de Inicio</th>
                             <th>Fecha de Fin</th>
-                            <th>Acción</th>
+                            <th>Tipo de Convenio</th>
+                            <th>Entidad del Convenio</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -78,8 +91,11 @@ if ($carrera_seleccionada) {
                                 <td><?= htmlspecialchars($alumno['dni']) ?></td>
                                 <td><?= htmlspecialchars($alumno['fecha_inicio']) ?></td>
                                 <td><?= htmlspecialchars($alumno['fecha_fin']) ?></td>
+                                <td><?= htmlspecialchars($alumno['tipo_convenio']) ?></td>
+                                <td><?= htmlspecialchars($alumno['entidad_convenio']) ?></td>
                                 <td>
                                     <a href="editar_alumno.php?id=<?= htmlspecialchars($alumno['id']) ?>" class="btn btn-primary btn-sm">Editar</a>
+                                    <a href="asignar_convenio.php?id=<?= htmlspecialchars($alumno['id']) ?>" class="btn btn-success btn-sm">Asignar</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
