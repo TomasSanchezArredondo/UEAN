@@ -13,10 +13,10 @@ if (!$carrera_result) {
 // Carrera seleccionada por defecto
 $carrera_seleccionada = isset($_GET['carrera']) ? $_GET['carrera'] : null;
 
-// Obtener los alumnos de la carrera seleccionada
+// Obtener los alumnos de la carrera seleccionada, excluyendo los graduados
 $alumnos = [];
 if ($carrera_seleccionada) {
-    $alumno_query = "SELECT * FROM alumno WHERE carrera = ?";
+    $alumno_query = "SELECT * FROM alumno WHERE carrera = ? AND es_graduado = 'NO'";
     $stmt = $conn->prepare($alumno_query);
     $stmt->bind_param("s", $carrera_seleccionada);
     $stmt->execute();
@@ -24,7 +24,6 @@ if ($carrera_seleccionada) {
     $alumnos = $result->fetch_all(MYSQLI_ASSOC);
     $stmt->close();
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

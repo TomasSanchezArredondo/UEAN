@@ -1,24 +1,17 @@
 <head>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJ2QF1aoomX0pK4Z8Kh9zB6sbJdfq9W1FZf8XB+IjLgqKXfgjOjvF3Tq6vw7" crossorigin="anonymous">
   <style>
-    /* Estilo personalizado para la navbar */
     .custom-navbar {
-      background-color: #0B2D56; /* El color azul oscuro que has solicitado */
+      background-color: #0B2D56;
     }
-
-    /* Cambiar el color de los enlaces a blanco para que contrasten con el fondo oscuro */
     .navbar-nav .nav-link {
       color: white !important;
     }
-
-    /* Cambiar el color del texto de la navbar-brand */
     .navbar-brand {
       color: white !important;
     }
-
-    /* Si quieres cambiar el color cuando pasas el mouse sobre los enlaces */
     .navbar-nav .nav-link:hover {
-      color: #A1C6EA !important; /* Color claro al hacer hover */
+      color: #A1C6EA !important;
     }
   </style>
 </head>
