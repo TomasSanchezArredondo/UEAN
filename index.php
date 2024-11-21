@@ -1,88 +1,85 @@
+<?php
+include 'navbar.php';
+?>
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interfaz Completa</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú de Gestión</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fff;
+            color: #000;
+        }
+        .list-group-item {
+            border: none;
+        }
+        .list-group-item.active {
+            background-color: #f8f9fa;
+            color: #000;
+            font-weight: bold;
+        }
+        a {
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
-
 <body>
-
-  <div class="container">
-    <div class="header">
-      <a href="index.php">
-        <img src="./img/descarga-Photoroom.png" alt="Logo">
-      </a>
-      <input type="text" placeholder="Buscar..." aria-label="Buscar">
-
-      <div class="dropdown">
-        <button class="dropbtn">Alumnos</button>
-        <div class="dropdown-content">
-          <a href="gestionar_alunos.php">agregar alumno</a>
-          <a href="lista_alumnos.php">Lista de alumnos</a>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Menú</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="list-group">
+                    <li class="list-group-item active">Alumnos</li>
+                    <li class="list-group-item"><a href="gestionar_alumnos.php" class="text-decoration-none">Gestionar alumno</a></li>
+                    <li class="list-group-item"><a href="lista_alumnos.php" class="text-decoration-none">Lista de alumnos</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="list-group">
+                    <li class="list-group-item active">Graduados</li>
+                    <li class="list-group-item"><a href="gestionar_graduados.php" class="text-decoration-none">Gestionar graduados</a></li>
+                    <li class="list-group-item"><a href="lista_graduados.php" class="text-decoration-none">Lista de graduados</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 mt-3">
+                <ul class="list-group">
+                    <li class="list-group-item active">Convenios</li>
+                    <li class="list-group-item"><a href="gestionar_convenio.php" class="text-decoration-none">Gestionar convenio</a></li>
+                    <li class="list-group-item"><a href="lista_convenios.php" class="text-decoration-none">Lista de convenios</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 mt-3">
+                <ul class="list-group">
+                    <li class="list-group-item active">Entidades</li>
+                    <li class="list-group-item"><a href="gestionar_entidades.php" class="text-decoration-none">Gestionar entidades</a></li>
+                    <li class="list-group-item"><a href="lista_entidades_referentes.php" class="text-decoration-none">Lista de entidades</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 mt-3">
+                <ul class="list-group">
+                    <li class="list-group-item active">Referentes</li>
+                    <li class="list-group-item"><a href="gestionar_referentes.php" class="text-decoration-none">Gestionar referentes</a></li>
+                    <li class="list-group-item"><a href="listar_referentes.php" class="text-decoration-none">Lista de referentes</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 mt-3">
+                <ul class="list-group">
+                    <li class="list-group-item active">Servicios de Empleo</li>
+                    <li class="list-group-item"><a href="gestion_servicio_empleo.php" class="text-decoration-none">Gestionar servicios de empleo</a></li>
+                    <li class="list-group-item"><a href="lista_servicios_empleo.php" class="text-decoration-none">Lista de servicios de empleo</a></li>
+                </ul>
+            </div>
         </div>
-      </div>
-
-      <div class="dropdown">
-        <button class="dropbtn">Convenios</button>
-        <div class="dropdown-content">
-          <a href="gestionar_convenio.php">Gestionar convenio</a>
-          <a href="lista_convenios.php">Lista de convenios</a>
-        </div>
-      </div>
-
-      <div class="dropdown">
-        <button class="dropbtn">Alumnos Graduados</button>
-        <div class="dropdown-content">
-          <a href="gestionar_graduados.php">Agregar graduado</a>
-          <a href="lista_graduados.php">Lista de graduados</a>
-        </div>
-      </div>
-
-      <div class="dropdown">
-        <button class="dropbtn">Entidades Referentes</button>
-        <div class="dropdown-content">
-          <a href="gestionar_entidades.php">Gestión de entidades</a>
-          <a href="lista_entidades_referentes.php">Lista de entidades</a>
-          <a href="gestionar_entidades.php">Gestión de referentes</a>
-          <a href="lista_entidades_referentes.php">Lista de referentes</a>
-        </div>
-      </div>
-
-      <div class="dropdown">
-        <button class="dropbtn">Servicio de Empleo</button>
-        <div class="dropdown-content">
-          <a href="gestion_servicio_empleo.php">Gestión de servicios de empleo</a>
-          <a href="lista_servicios_empleo.php">Lista de servicios de empleo</a>
-        </div>
-      </div>
     </div>
 
-    <div class="content">
-      <div class="title">RESUMEN</div>
-      <div class="buttons">
-        <h2>GESTIONES</h2>
-        <h2>LISTAS</h2>
-
-        <a class="button_3" href="gestionar_alunos.php">Gestionar alumno</a>
-        <a class="button_3" href="lista_alumnos.php">Lista de alumnos</a>
-        <a class="button_3" href="gestionar_graduados.php">Gestionar graduados</a>
-        <a class="button_3" href="lista_graduados.php">Lista de graduados</a>
-        <a class="button_3" href="gestionar_convenio.php">Gestionar convenio</a>
-        <a class="button_3" href="lista_convenios.php">Lista de convenios</a>
-        <a class="button_3" href="gestionar_entidades.php">Gestionar entidades</a>
-        <a class="button_3" href="lista_entidades_referentes.php">Lista de entidades</a>
-        <a class="button_3" href="gestionar_referentes.php">Gestionar referentes</a>
-        <a class="button_3" href="lista_referentes.php">Lista de referentes</a>
-        <a class="button_3" href="gestion_servicio_empleo.php">Gestionar servicios de empleo</a>
-        <a class="button_3" href="lista_servicios_empleo.php">Lista de servicios de empleo</a>
-      </div>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
