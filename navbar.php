@@ -84,8 +84,8 @@
               Servicio de Empleo
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="gestion_servicio_empleo.php">Gestión de Servicios de Empleo</a></li>
-              <li><a class="dropdown-item" href="lista_servicios_empleo.php">Lista de Servicios de Empleo</a></li>
+              <li><a class="dropdown-item" href="agregar_empleo.php">Agregar empleo</a></li>
+              <li><a class="dropdown-item" href="lista_empleo.php">Lista Empleos</a></li>
             </ul>
           </li>
         </ul>

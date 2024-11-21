@@ -64,6 +64,7 @@ if ($tabla_seleccionada === 'otros') {
                                 foreach (array_keys($datos[0]) as $columna) {
                                     echo "<th>" . htmlspecialchars($columna) . "</th>";
                                 }
+                                echo "<th>Acción</th>";
                             } else {
                                 echo "<th>No hay datos disponibles</th>";
                             }
@@ -77,13 +78,14 @@ if ($tabla_seleccionada === 'otros') {
                             foreach ($datos as $fila) {
                                 echo "<tr>";
                                 foreach ($fila as $columna => $valor) {
-                                    // Si la columna es "convenio_file", generamos un enlace
                                     if ($columna === 'convenio_file' && !empty($valor)) {
                                         echo "<td><a href='" . htmlspecialchars($valor) . "' target='_blank'>Ver archivo</a></td>";
                                     } else {
                                         echo "<td>" . htmlspecialchars($valor) . "</td>";
                                     }
                                 }
+                                // Botón Editar
+                                echo "<td><a href='editar_convenio.php?id=" . htmlspecialchars($fila['id']) . "' class='btn btn-warning btn-sm'>Editar</a></td>";
                                 echo "</tr>";
                             }
                         } else {

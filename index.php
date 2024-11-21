@@ -72,8 +72,8 @@ include 'navbar.php';
             <div class="col-md-6 mt-3">
                 <ul class="list-group">
                     <li class="list-group-item active">Servicios de Empleo</li>
-                    <li class="list-group-item"><a href="gestion_servicio_empleo.php" class="text-decoration-none">Gestionar servicios de empleo</a></li>
-                    <li class="list-group-item"><a href="lista_servicios_empleo.php" class="text-decoration-none">Lista de servicios de empleo</a></li>
+                    <li class="list-group-item"><a href="añadir_empleo.php" class="text-decoration-none">Añadir servicios de empleo</a></li>
+                    <li class="list-group-item"><a href="lista_empleo.php" class="text-decoration-none">Lista de servicios de empleo</a></li>
                 </ul>
             </div>
         </div>
