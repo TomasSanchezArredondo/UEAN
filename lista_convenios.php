@@ -8,7 +8,6 @@ $tabla_seleccionada = isset($_POST['tabla_seleccionada']) ? $_POST['tabla_selecc
 $datos = [];
 
 if ($tabla_seleccionada === 'otros') {
-    // Consulta para tabla convenio_otros
     $sql = "SELECT co.id, e.nombre AS entidad, co.tipo_convenio, co.firma_convenio, co.adendas_cantidad, co.observaciones, co.convenio_file, co.fecha_firma_convenio
             FROM convenio_otros co
             INNER JOIN entidad e ON co.id_entidad = e.id";
@@ -17,7 +16,6 @@ if ($tabla_seleccionada === 'otros') {
         $datos = $result->fetch_all(MYSQLI_ASSOC);
     }
 } elseif ($tabla_seleccionada === 'pasantia_beneficio') {
-    // Consulta para tabla convenios_pasantia_beneficios
     $sql = "SELECT cpb.id, e.nombre AS entidad, cpb.tipo_convenio, cpb.observaciones, cpb.convenio_file, cpb.fecha_firma_convenio
             FROM convenios_pasantia_beneficios cpb
             INNER JOIN entidad e ON cpb.id_entidad = e.id";
@@ -59,12 +57,12 @@ if ($tabla_seleccionada === 'otros') {
                     <thead>
                         <tr>
                             <?php
-                            // Mostramos las columnas según los datos obtenidos
                             if (!empty($datos)) {
                                 foreach (array_keys($datos[0]) as $columna) {
                                     echo "<th>" . htmlspecialchars($columna) . "</th>";
                                 }
                                 echo "<th>Acción</th>";
+                                echo "<th>Alumnos Inscriptos</th>";
                             } else {
                                 echo "<th>No hay datos disponibles</th>";
                             }
@@ -73,7 +71,6 @@ if ($tabla_seleccionada === 'otros') {
                     </thead>
                     <tbody>
                         <?php
-                        // Mostramos los datos de la tabla seleccionada
                         if (!empty($datos)) {
                             foreach ($datos as $fila) {
                                 echo "<tr>";
@@ -84,8 +81,8 @@ if ($tabla_seleccionada === 'otros') {
                                         echo "<td>" . htmlspecialchars($valor) . "</td>";
                                     }
                                 }
-                                // Botón Editar
                                 echo "<td><a href='editar_convenio.php?id=" . htmlspecialchars($fila['id']) . "' class='btn btn-warning btn-sm'>Editar</a></td>";
+                                echo "<td><a href='lista_alumnos_convenio.php?id=" . htmlspecialchars($fila['id']) . "&tipo=" . htmlspecialchars($tabla_seleccionada) . "' class='btn btn-primary btn-sm'>Ver</a></td>";
                                 echo "</tr>";
                             }
                         } else {

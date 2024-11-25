@@ -94,9 +94,12 @@ if ($carrera_seleccionada) {
                                 <td><?= htmlspecialchars($alumno['tipo_convenio']) ?></td>
                                 <td><?= htmlspecialchars($alumno['entidad_convenio']) ?></td>
                                 <td>
-                                    <a href="editar_alumno.php?id=<?= htmlspecialchars($alumno['id']) ?>" class="btn btn-primary btn-sm">Editar</a>
+                                <a href="perfil_alumno.php?id=<?= htmlspecialchars($alumno['id']) ?>" class="btn btn-info btn-sm">Perfil</a>
+                                <a href="asignar_convenio.php?id=<?= htmlspecialchars($alumno['id']) ?>" class="btn btn-success btn-sm">Asignar</a>
+                            </td>
+                                    <!-- <a href="editar_alumno.php?id=<?= htmlspecialchars($alumno['id']) ?>" class="btn btn-primary btn-sm">Editar</a>
                                     <a href="asignar_convenio.php?id=<?= htmlspecialchars($alumno['id']) ?>" class="btn btn-success btn-sm">Asignar</a>
-                                </td>
+                                </td>} -->
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

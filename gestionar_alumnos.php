@@ -62,11 +62,6 @@ include './navbar.php';
                 <label for="puesto" class="form-label">Puesto</label>
                 <input type="text" class="form-control" id="puesto" name="puesto">
             </div>
-            <!-- Archivo de convenio -->
-            <div class="mb-3">
-                <label for="convenio_file" class="form-label">Archivo de Convenio</label>
-                <input type="file" class="form-control" id="convenio_file" name="convenio_file">
-            </div>
             <!-- Botón de enviar -->
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
