@@ -32,6 +32,10 @@ $result_referentes = $conn->query($query_referentes);
             <textarea class="form-control" id="requisitos" name="requisitos" rows="3" required></textarea>
         </div>
         <div class="mb-3">
+            <label for="carrera_orientada" class="form-label">Carrera Orientada</label>
+            <input type="text" class="form-control" id="carrera_orientada" name="carrera_orientada">
+        </div>
+        <div class="mb-3">
             <label for="telefono_contacto" class="form-label">Teléfono de Contacto</label>
             <input type="tel" class="form-control" id="telefono_contacto" name="telefono_contacto" required>
         </div>

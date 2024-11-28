@@ -17,7 +17,7 @@ $result_empleos = $conn->query($query_empleos);
 </head>
 <body>
 <div class="container mt-5">
-    <h1 class="mb-4">Lista de Empleos</h1>
+    <h1 class="mb-4">Lista de empleos disponibles</h1>
     <div class="row">
         <?php while ($empleo = $result_empleos->fetch_assoc()): ?>
             <div class="col-md-3 mb-4">

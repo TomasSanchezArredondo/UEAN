@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $area = $_POST['area'];
     $tipo = $_POST['tipo'];
     $referente_id = $_POST['referente'];
+    $carrera_orientada = $_POST['carrera_orientada'];
 
     // Manejo de imagen
     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === 0) {
@@ -33,11 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Insertar empleo
-    $query = "INSERT INTO empleo (empresa, puesto, requisitos, telefono_contacto, mail_contacto, beneficios, horario_inicio, horario_fin, fecha_limite, direccion, imagen, area, tipo) 
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO empleo (empresa, puesto, requisitos, telefono_contacto, mail_contacto, beneficios, horario_inicio, horario_fin, fecha_limite, direccion, imagen, area, tipo, carrera_orientada) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param('sssssssssssss', $empresa, $puesto, $requisitos, $telefono_contacto, $mail_contacto, $beneficios, $horario_inicio, $horario_fin, $fecha_limite, $direccion, $imagen_path, $area, $tipo);
-    $stmt->execute();
+    $stmt->bind_param('ssssssssssssss', $empresa, $puesto, $requisitos, $telefono_contacto, $mail_contacto, $beneficios, $horario_inicio, $horario_fin, $fecha_limite, $direccion, $imagen_path, $area, $tipo, $carrera_orientada);
+
 
     $empleo_id = $stmt->insert_id;
 

@@ -48,25 +48,12 @@ $result_postulantes = $stmt_postulantes->get_result();
 <body>
 <div class="container mt-5">
     <h1 class="mb-4 text-center">Detalles del Empleo</h1>
-
-    <!-- Mostrar datos del empleo -->
-    <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles del Empleo</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-</head>
-<body>
 <?php
 // Contar la cantidad de postulantes relacionados
 $cantidad_postulantes = $result_postulantes->num_rows;
 ?>
 
 <div class="container mt-5">
-    <h1 class="mb-4">Detalles del Empleo</h1>
-
     <!-- Contenedor principal con dos columnas -->
     <div class="row">
         <!-- Columna para los datos -->
@@ -86,10 +73,10 @@ $cantidad_postulantes = $result_postulantes->num_rows;
         <div class="col-md-4">
             <?php if (!empty($empleo['imagen'])): ?>
                 <img src="<?= $empleo['imagen'] ?>" alt="Imagen del empleo" class="img-fluid mb-3" style="max-width: 100%; height: 50%;">
+                <!-- Botón para redirigir a la edición -->
+                <a href="editar_empleo.php?id=<?= $empleo['id'] ?>" class="btn btn-warning mt-3">Editar Detalles del Empleo</a>
             <?php endif; ?>
         </div>
-    </div>
-
     <!-- Tabla de postulantes -->
     <h2 class="mb-3 mt-4">
         Postulantes 
