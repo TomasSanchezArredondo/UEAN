@@ -34,8 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($stmt->execute()) {
-        echo "Convenio guardado exitosamente.";
-    } else {
+        header('Location: lista_convenios.php');    } else {
         echo "Error al guardar el convenio: " . $conn->error;
     }
 

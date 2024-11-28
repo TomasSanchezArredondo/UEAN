@@ -61,7 +61,7 @@ $entidades = $result->fetch_all(MYSQLI_ASSOC);
         if (tipoConvenio === 'pasantia-beneficio') {
             formularioDinamico.innerHTML = `
                 <div class="mb-3">
-                    <label for="tipo_convenio" class="form-label">Tipo de Convenio</label>
+                    <label for="tipo_convenio" class="form-label">Convenio</label>
                     <select id="tipo_convenio" name="tipo_convenio" class="form-select" required>
                         <option value="">Seleccione un tipo</option>
                         <option value="pasantía">Pasantía</option>
@@ -84,7 +84,7 @@ $entidades = $result->fetch_all(MYSQLI_ASSOC);
         } else if (tipoConvenio === 'otros') {
             formularioDinamico.innerHTML = `
                 <div class="mb-3">
-                    <label for="tipo_convenio" class="form-label">Tipo de Convenio</label>
+                    <label for="tipo_convenio" class="form-label">Convenio</label>
                     <select id="tipo_convenio" name="tipo_convenio" class="form-select" required>
                         <option value="">Seleccione un tipo</option>
                         <option value="colaboración academica">Colaboración Académica</option>

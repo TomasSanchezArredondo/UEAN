@@ -1,6 +1,93 @@
 <?php
+ob_start();
 require 'conexion.php';
 include 'navbar.php';
+
+// Verificar si se envió el formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = intval($_POST['id']);
+    $nombres = $_POST['nombres'];
+    $apellidos = $_POST['apellidos'];
+    $pasantia = $_POST['pasantia'];
+    $dni = $_POST['dni'];
+    $carrera = $_POST['carrera'];
+    $fecha_inicio = $_POST['fecha_inicio'];
+    $fecha_fin = $_POST['fecha_fin'];
+    $observaciones = $_POST['observaciones'];
+    $puesto = $_POST['puesto'];
+    $convenio_file_path = null;
+
+    // Manejar la subida del archivo
+    if (isset($_FILES['convenio_file']) && $_FILES['convenio_file']['error'] === UPLOAD_ERR_OK) {
+        $upload_dir = 'uploads/';
+        $file_name = basename($_FILES['convenio_file']['name']);
+        $target_path = $upload_dir . uniqid() . '_' . $file_name;
+
+        if (move_uploaded_file($_FILES['convenio_file']['tmp_name'], $target_path)) {
+            $convenio_file_path = $target_path;
+        } else {
+            die("Error al subir el archivo.");
+        }
+    }
+
+    // Actualizar los datos en la base de datos
+    $query = "UPDATE alumno SET 
+                nombres = ?, 
+                apellidos = ?, 
+                pasantía = ?, 
+                dni = ?, 
+                carrera = ?, 
+                fecha_inicio = ?, 
+                fecha_fin = ?, 
+                observaciones = ?, 
+                puesto = ?";
+
+    if ($convenio_file_path) {
+        $query .= ", convenio_file = ?";
+    }
+    
+    $query .= " WHERE id = ?";
+
+    $stmt = $conn->prepare($query);
+
+    if ($convenio_file_path) {
+        $stmt->bind_param(
+            "ssssssssssi",
+            $nombres,
+            $apellidos,
+            $pasantia,
+            $dni,
+            $carrera,
+            $fecha_inicio,
+            $fecha_fin,
+            $observaciones,
+            $puesto,
+            $convenio_file_path,
+            $id
+        );
+    } else {
+        $stmt->bind_param(
+            "sssssssssi",
+            $nombres,
+            $apellidos,
+            $pasantia,
+            $dni,
+            $carrera,
+            $fecha_inicio,
+            $fecha_fin,
+            $observaciones,
+            $puesto,
+            $id
+        );
+    }
+
+    if ($stmt->execute()) {
+        header("Location: perfil_alumno.php?id=$id");
+        exit();
+    } else {
+        die("Error al actualizar los datos del alumno.");
+    }
+}
 
 // Verificar que se haya recibido un ID
 if (!isset($_GET['id']) || empty($_GET['id'])) {
@@ -33,7 +120,7 @@ $alumno = $result->fetch_assoc();
 <body>
     <div class="container mt-5">
         <h1 class="mb-4">Editar Alumno</h1>
-        <form action="./guardar_edicion_alumnos.php" method="POST" enctype="multipart/form-data">
+        <form action="" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= htmlspecialchars($alumno['id']) ?>">
             
             <div class="mb-3">
@@ -92,7 +179,7 @@ $alumno = $result->fetch_assoc();
                 <?php endif; ?>
             </div>
 
-            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            <button type="submit" class="btn btn-primary">Guardar cambios</button>
             <a href="listar_alumnos.php" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
@@ -102,4 +189,5 @@ $alumno = $result->fetch_assoc();
 <?php
 $stmt->close();
 $conn->close();
+ob_end_flush(); 
 ?>

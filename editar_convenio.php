@@ -3,7 +3,6 @@ include 'conexion.php';
 include './navbar.php';
 
 $id = $_GET['id'] ?? null;
-
 if (!$id) {
     echo "ID del convenio no proporcionado.";
     exit;
@@ -47,8 +46,12 @@ if (!$datos) {
     echo "Convenio no encontrado.";
     exit;
 }
-?>
 
+// Formateo de fecha para evitar errores
+$fecha_firma_convenio = !empty($datos['fecha_firma_convenio']) && $datos['fecha_firma_convenio'] !== '0000-00-00'
+    ? $datos['fecha_firma_convenio']
+    : '';
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -63,7 +66,6 @@ if (!$datos) {
     <form action="procesar_edicion.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?= htmlspecialchars($datos['id']) ?>">
         
-        <!-- Campos de edición -->
         <div class="mb-3">
             <label for="entidad" class="form-label">Entidad</label>
             <input type="text" id="entidad" name="entidad" class="form-control" value="<?= htmlspecialchars($datos['entidad']) ?>" required>
@@ -76,8 +78,11 @@ if (!$datos) {
 
         <?php if ($datos['firma_convenio'] !== null): ?>
             <div class="mb-3">
-                <label for="firma_convenio" class="form-label">Firma del Convenio</label>
-                <input type="text" id="firma_convenio" name="firma_convenio" class="form-control" value="<?= htmlspecialchars($datos['firma_convenio']) ?>">
+                <label for="firma_convenio" class="form-label">¿Se firmó el convenio?</label>
+                <select id="firma_convenio" name="firma_convenio" class="form-select" required>
+                    <option value="Sí" <?= $datos['firma_convenio'] === 'Sí' ? 'selected' : '' ?>>Sí</option>
+                    <option value="No" <?= $datos['firma_convenio'] === 'No' ? 'selected' : '' ?>>No</option>
+                </select>
             </div>
         <?php endif; ?>
 
@@ -95,7 +100,7 @@ if (!$datos) {
 
         <div class="mb-3">
             <label for="fecha_firma_convenio" class="form-label">Fecha de Firma</label>
-            <input type="date" id="fecha_firma_convenio" name="fecha_firma_convenio" class="form-control" value="<?= htmlspecialchars($datos['fecha_firma_convenio']) ?>">
+            <input type="date" id="fecha_firma_convenio" name="fecha_firma_convenio" class="form-control" value="<?= htmlspecialchars($fecha_firma_convenio) ?>">
         </div>
 
         <div class="mb-3">

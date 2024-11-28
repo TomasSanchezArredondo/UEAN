@@ -43,7 +43,7 @@ $stmt->close();
                 <li class="list-group-item"><strong>Apellidos:</strong> <?= htmlspecialchars($alumno['apellidos']) ?></li>
                 <li class="list-group-item"><strong>DNI:</strong> <?= htmlspecialchars($alumno['dni']) ?></li>
                 <li class="list-group-item"><strong>Carrera:</strong> <?= htmlspecialchars($alumno['carrera']) ?></li>
-                <li class="list-group-item"><strong>Pasantía:</strong> <?= htmlspecialchars($alumno['pasantia']) ?></li>
+                <li class="list-group-item"><strong>Pasantía:</strong> <?= htmlspecialchars($alumno['pasantía']) ?></li>
                 <li class="list-group-item"><strong>Fecha de Inicio:</strong> <?= htmlspecialchars($alumno['fecha_inicio']) ?></li>
                 <li class="list-group-item"><strong>Fecha de Fin:</strong> <?= htmlspecialchars($alumno['fecha_fin']) ?></li>
                 <li class="list-group-item"><strong>Puesto:</strong> <?= htmlspecialchars($alumno['puesto']) ?></li>
@@ -57,7 +57,7 @@ $stmt->close();
                     <?php endif; ?>
                 </li>
             </ul>
-            <a href="editar_alumno.php?id=<?= htmlspecialchars($alumno['id']) ?>" class="btn btn-primary btn-sm">Editar</a>
+            <a href="editar_alumno.php?id=<?= htmlspecialchars($alumno['id']) ?>" class="btn btn-primary btn-sm mt-3">Editar Alumno</a>
         </div>
     </div>
 </div>
