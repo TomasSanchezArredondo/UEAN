@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt = $conn->prepare($query);
     $stmt->bind_param('ssssssssssssss', $empresa, $puesto, $requisitos, $telefono_contacto, $mail_contacto, $beneficios, $horario_inicio, $horario_fin, $fecha_limite, $direccion, $imagen_path, $area, $tipo, $carrera_orientada);
 
-
+    $stmt->execute();
     $empleo_id = $stmt->insert_id;
 
     // Relacionar con referente

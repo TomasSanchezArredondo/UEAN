@@ -24,6 +24,7 @@ $empleo = $result_empleo->fetch_assoc();
 if (!$empleo) {
     die("Empleo no encontrado.");
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +39,8 @@ if (!$empleo) {
 <div class="container mt-5">
     <h1 class="mb-4 text-center">Detalles del Empleo</h1>
 
-    <!-- Mostrar datos del empleo -->
+<div class="container mt-5">
+    <!-- Contenedor principal con dos columnas -->
     <div class="row">
         <!-- Columna para los datos -->
         <div class="col-md-8">
@@ -57,9 +59,9 @@ if (!$empleo) {
         <div class="col-md-4">
             <?php if (!empty($empleo['imagen'])): ?>
                 <img src="<?= $empleo['imagen'] ?>" alt="Imagen del empleo" class="img-fluid mb-3" style="max-width: 100%; height: 50%;">
+                <!-- Botón para redirigir a la edición -->
             <?php endif; ?>
         </div>
-    </div>
 
     <!-- Botón para postularse -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postulateModal">
@@ -90,7 +92,12 @@ if (!$empleo) {
                             <input type="file" class="form-control" id="cv" name="cv" required>
                         </div>
                         <input type="hidden" name="id_empleo" value="<?= $id_empleo ?>">
-                        <button type="submit" class="btn btn-primary">Enviar Postulación</button>
+                        <div class="d-inline-block">
+                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#postulateModal">
+                                Postúlate
+                            </button>
+                        </div>
+
                     </form>
                 </div>
             </div>
